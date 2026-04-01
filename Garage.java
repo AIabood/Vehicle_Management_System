@@ -120,4 +120,42 @@ public class Garage {
         }
         System.out.println("Vehicle with owner name '" + ownerName + "' not found!\n");
     }
+
+    /**
+     * Returns a formatted string with all vehicle details
+     * @return A string representing all vehicles in the garage
+     */
+    public String getAllVehicleInfo() {
+        if (count == 0) {
+            return "The garage is empty!\n";
+        }
+
+        StringBuilder sb = new StringBuilder();
+        sb.append("Total Vehicles: ").append(count).append("\n");
+        sb.append("================== ALL VEHICLES IN GARAGE ==================\n");
+
+        for (int i = 0; i < count; i++) {
+            sb.append("Vehicle ").append(i + 1).append(":\n");
+            
+            Vehicle v = vehicles[i];
+            sb.append("Owner: ").append(v.getOwnerName()).append("\n");
+            sb.append("Brand: ").append(v.getBrand()).append("\n");
+            sb.append("Model: ").append(v.getModel()).append("\n");
+            sb.append("Year: ").append(v.getYear()).append("\n");
+
+            if (v instanceof Car) {
+                sb.append("Type: Car\n");
+                sb.append("Seating Capacity: ").append(((Car) v).getSeatingCapacity()).append("\n");
+            } else if (v instanceof Truck) {
+                sb.append("Type: Truck\n");
+                sb.append("Cargo Capacity: ").append(((Truck) v).getCargoCapacity()).append("\n");
+            } else if (v instanceof Motorcycle) {
+                sb.append("Type: Motorcycle\n");
+                sb.append("Engine Size: ").append(((Motorcycle) v).getEngineSize()).append("\n");
+            }
+            sb.append("-----------------------------------------------------------\n");
+        }
+
+        return sb.toString();
+    }
 }
